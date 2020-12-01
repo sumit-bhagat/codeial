@@ -4,6 +4,9 @@ const router = express.Router();
 const homeController = require("../controllers/home_controller");
 
 router.get('/', homeController.home);
-// router.get('/two', homeController.click1);
+
+// use router.use not router.get to connect route - for the particular path
+router.use('/users', require('./users'));
+router.use('/posts', require('./posts'));
 
 module.exports = router;
