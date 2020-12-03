@@ -5,6 +5,7 @@ const homeController = require("../controllers/home_controller");
 
 router.get('/', homeController.home);
 
+
 // use router.use not router.get to connect route - for the particular path
 router.use('/users', require('./users'));
 router.use('/posts', require('./posts'));
