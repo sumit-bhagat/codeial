@@ -44,5 +44,5 @@ module.exports.create = function(req, res){
 }
 
 module.exports.createSession = function(req, res){
-    // TO DO connecting to route
+    return res.redirect('/');
 }
