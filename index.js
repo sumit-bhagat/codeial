@@ -42,8 +42,12 @@ app.use(session({
     }
 }));
 
+
 app.use(passport.initialize());
 app.use(passport.session());
+
+//middleware to set up authentication to check cookie if you user has signed in
+app.use(passport.setAuthenticatedUser);
 
 // import routes
 app.use('/', require('./routes/index'));
