@@ -5,10 +5,13 @@ const port = 8000;
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
 
+
+
 // used for session cookie and authentication
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
+const MongoStore = require('connect-mongo')(session);
 
 
 app.use(express.urlencoded());
@@ -29,7 +32,7 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 
 
-// setting cookie session
+// Mongostore is used to store the session cookie in db
 app.use(session({
     name : 'codeial',
     // When encryption happens there is key to encode and decode, i.e. 
@@ -39,7 +42,18 @@ app.use(session({
     resave : false,
     cookie :{
         maxAge : (1000 * 60 * 100)
+    },
+    store : new MongoStore(
+        {
+        mongooseConnection :db,
+        autoRemove : 'disabled'
+
+    },
+    function(err){
+        console.log( err || 'connect-mongo db setup ok');
     }
+    )
+
 }));
 
 
