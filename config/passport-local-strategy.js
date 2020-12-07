@@ -28,7 +28,7 @@ passport.use(new LocalStrategy({
     }
 ));
 
-// serializing the user deciding which key is to be kep in the cookie
+// serializing the user deciding which key is to be keep in the cookie
 
 passport.serializeUser(function(user, done){
     done(null, user.id);
